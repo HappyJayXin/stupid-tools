@@ -1,0 +1,14 @@
+{
+  "name": "10min",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "",
+	"license": "ISC",
+	"dependencies": {
+    "puppeteer-core": "^5.4.1"
+  }
+}
