@@ -6,10 +6,18 @@ const puppeteer = require('puppeteer-core');
     headless: false,
   });
   const page = await browser.newPage();
+
   await page.goto('https://10minutemail.net/');
   await page.click('#copy-button');
-  while (true) {
-    await page.waitFor(1000 * 60 * 10 - 10000);
-    await page.click('a[href*="more"]');
-  }
+
+  setInterval(async () => {
+    const timeElement = await page.$('#time');
+    if (timeElement) {
+      const time = await page.evaluate((element) => element.textContent, timeElement);
+      const timeNum = +time.split(':').join('');
+      if (timeNum <= 10) {
+        await page.click('a[href*="more"]');
+      }
+    }
+  }, 1000);
 })();
